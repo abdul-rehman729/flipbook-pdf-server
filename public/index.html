@@ -1,0 +1,632 @@
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content="" />
+    <meta name="author" content="" />
+
+    <title>FlipBook JQuery</title>
+    <script>
+      // Break out iframe on iOS cause safari expand iframe to fit the content, thus making
+      // the lightbox bigger than the browser window.
+      // We need to check for MSStream because Microsoft injected the word iPhone in IE11's userAgent therefore we need to exclude it.
+      var iOS =
+        /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;
+      if (iOS && top.location != self.location) {
+        top.location = self.location.href;
+      }
+    </script>
+    <!-- Bootstrap Core CSS -->
+    <link rel="stylesheet" href="./css/bootstrap.min.css" type="text/css" />
+
+    <!-- Custom Fonts -->
+    <link
+      href="http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800"
+      rel="stylesheet"
+      type="text/css"
+    />
+    <link
+      href="http://fonts.googleapis.com/css?family=Merriweather:400,300,300italic,400italic,700,700italic,900,900italic"
+      rel="stylesheet"
+      type="text/css"
+    />
+    <link rel="stylesheet" href="./css/font-awesome.min.css" type="text/css" />
+
+    <!-- Plugin CSS -->
+    <link rel="stylesheet" href="./css/animate.min.css" type="text/css" />
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="./css/creative.css" type="text/css" />
+  </head>
+
+  <body id="page-top" class="wowbook-lightbox-on">
+    <section id="services">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-12 text-center">
+            <h2 class="section-heading">Customized By Abdul Rehman</h2>
+            <hr class="primary" />
+          </div>
+        </div>
+      </div>
+      <div class="container">
+        <div class="row">
+          <div id="book2-trigger" class="col-lg-4 col-md-6 text-center">
+            <div class="service-box">
+              <img
+                class="book-thumb"
+                src="./assets/aesops-fables-cover-thumb(1).jpg"
+              />
+              <h3>PDF</h3>
+              <p class="text-muted">
+                Wowbook rendering a pdf file, with table of contents, selectable
+                text and search(experimental).
+              </p>
+            </div>
+          </div>
+          <div id="book3-trigger" class="col-lg-4 col-md-6 text-center">
+            <div class="service-box">
+              <img class="book-thumb" src="./assets/cover.jpg" />
+              <h3>HTML</h3>
+              <p class="text-muted">
+                A example that uses only html as content.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="no-padding" id="portfolio"></section>
+
+    <div style="display: none">
+      <div id="book1"></div>
+
+      <div id="book3">
+        <div>
+          <img src="./assets/cover.jpg" class="wowbook-lazy" />
+        </div>
+        <div>
+          <h1 style="font-size: 35px">Easy to use</h1>
+          <p>
+            Wowbook requires a basic knowledge of html and javascript to be
+            used, and comes several features to help you to create a book with
+            minimum effort, like:
+          </p>
+          <ul>
+            <li>
+              Toolbar, table of contents and thumbnails can be created
+              automatically.
+            </li>
+            <li>Automatic page numbering.</li>
+            <li>Responsive.</li>
+            <li>
+              Ready to use examples (based on
+              <a href="html5boilerplate.com">html5 boilerplate</a> ).
+            </li>
+          </ul>
+        </div>
+        <div>
+          <h1 style="font-size: 35px">PDF support</h1>
+          <p>
+            Wowbook render pdf files using the library
+            <a href="https://github.com/mozilla/pdf.js" target="_blank"
+              >PDF.js</a
+            >
+            from Mozilla.
+          </p>
+          <p>Wowbook pdf implementation supports:</p>
+          <ul>
+            <li>external(html) links</li>
+            <li>table of contents</li>
+            <li>selectable text</li>
+            <li>experimental: pdf search</li>
+          </ul>
+          <p>
+            <b>Will wowbook render my pdf file?</b> To do a basic test open the
+            pdf file with Firefox (PDF.js is the defaul PDF viewer on Firefox).
+            If you want make sure you can send the file to be tested.
+          </p>
+          <p>
+            PDF.js works in the following browsers: Firefox, Chrome, Opera,
+            IE10+. Limited support for Safari, Android and IE9. Not supported on
+            IE8. For more information
+            <a
+              href="https://github.com/mozilla/pdf.js/wiki/Frequently-Asked-Questions#what-browsers-are-supported"
+              target="_blank"
+              >click here</a
+            >.
+          </p>
+        </div>
+        <div>
+          <h1 style="font-size: 35px">Responsive</h1>
+          <p>
+            Comes with built in features to resize the book to adapt for
+            different screens dimensions.
+          </p>
+          <p>Touch support (with pinch to zoom and double click to zoom).</p>
+          <p>Responsive toolbar adapts to the size of screen.</p>
+          <p>
+            If you need more control on how to resize the book, you can use the
+            javascript API to change the book's size.
+          </p>
+        </div>
+        <div>
+          <h1 style="font-size: 35px">Right to Left</h1>
+          <p>
+            Wowbook can order the book pages from right to left if you need to
+            use right-to-left script.
+          </p>
+          <br />
+          <h1 style="font-size: 35px">Lazy Loading</h1>
+          <p>
+            Wowbook can defer the loading of a page contents until the page is
+            shown. This is especially useful in books that contains a lot of
+            images.
+          </p>
+        </div>
+        <div>
+          <h1 style="font-size: 35px">Slide Show</h1>
+          <p>
+            Turn your book into a slide show, with configurable change slide
+            interval.
+          </p>
+          <h1 style="font-size: 35px">Flash support</h1>
+          <p>
+            It's possible to use flash (like youtube videos) in your books, but
+            the page that contains the flash object will be limited to the
+            "basic flipping effect" (and ONLY that page).
+          </p>
+        </div>
+        <div class="more bg-double-page">
+          <h1 style="font-size: 35px">And more</h1>
+          <ul>
+            <li>
+              Browser support :
+              <img src="./assets/browser_logos-32.png" alt="browser logos" />
+            </li>
+            <li>Keyboard navigation</li>
+            <li>Mouse wheel navigation / zoom</li>
+            <li>Play flipping sound</li>
+            <li>Documentation</li>
+            <li>Source code</li>
+            <li>Examples</li>
+            <li>Rich API</li>
+          </ul>
+        </div>
+        <div>
+          <img src="./assets/cover_last.jpg" class="wowbook-lazy" />
+        </div>
+      </div>
+      <img src="./assets/wood.jpg" style="visibility: hidden" />
+    </div>
+    <style>
+      .hidden-FIXME {
+        display: none;
+      }
+      #portfolio {
+        display: none;
+      }
+      header {
+        display: none;
+      }
+      #contact {
+        display: none;
+      }
+      #about {
+        display: none;
+      }
+
+      .navbar-header {
+        width: 100% !important;
+      }
+      .navbar-brand {
+        padding-right: 0;
+        font-size: 14px !important;
+      }
+      #nav-buy-now {
+        color: black;
+        float: right;
+        font-size: 14px;
+        font-weight: 700;
+        margin-right: -10px;
+      }
+      @media (min-width: 768px) {
+        #nav-buy-now {
+          margin-right: 0px;
+        }
+      }
+      #bs-example-navbar-collapse-1 {
+        display: none;
+      }
+
+      .wowbook {
+        font-family: "Open Sans", "Helvetica Neue", Arial, sans-serif;
+      }
+      .wowbook-page-content {
+        padding: 1.5em;
+      }
+      .wowbook ul {
+        padding-left: 1em;
+      }
+      .book-thumb {
+        height: 150px;
+        box-shadow: 0 0 3px rgba(0, 0, 0, 0.5);
+      }
+
+      #book1-trigger,
+      #book2-trigger,
+      #book3-trigger {
+        cursor: pointer;
+      }
+      #book1-trigger:hover,
+      #book2-trigger:hover,
+      #book3-trigger:hover {
+        background: #f8f8f8;
+      }
+
+      .wowbook-lightbox > .wowbook-close {
+        background: transparent !important;
+        border: none !important;
+        color: #222 !important;
+        font-size: 2.5em;
+      }
+      .wowbook-lightbox > .wowbook-close:hover {
+        background: #444 !important;
+        color: white !important;
+        border-radius: 3px;
+      }
+
+      .lightbox-images1 .wowbook-book-container {
+        background: #6d6b92; /* Old browsers */
+        background: -moz-radial-gradient(
+          center,
+          ellipse cover,
+          #ffffff 0%,
+          #6d6b92 100%
+        ); /* FF3.6-15 */
+        background: -webkit-radial-gradient(
+          center,
+          ellipse cover,
+          #ffffff 0%,
+          #6d6b92 100%
+        ); /* Chrome10-25,Safari5.1-6 */
+        background: radial-gradient(
+          ellipse at center,
+          #ffffff 0%,
+          #6d6b92 100%
+        ); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+      }
+      .lightbox-images1 > .wowbook-close,
+      .lightbox-images2 > .wowbook-close {
+        color: #ccc !important;
+      }
+      .lightbox-images2 .wowbook-book-container {
+        background: #1e2831; /* Old browsers */
+        background: -moz-radial-gradient(
+          center,
+          ellipse cover,
+          #ffffff 0%,
+          #1e2831 100%
+        ); /* FF3.6-15 */
+        background: -webkit-radial-gradient(
+          center,
+          ellipse cover,
+          #ffffff 0%,
+          #1e2831 100%
+        ); /* Chrome10-25,Safari5.1-6 */
+        background: radial-gradient(
+          ellipse at center,
+          #ffffff 0%,
+          #1e2831 100%
+        ); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+      }
+
+      .lightbox-pdf .wowbook-book-container {
+        background: #e5e5e5 url(./assets/bg-lightbox-pdf.png); /* Old browsers */
+        background: #e5e5e5 -moz-radial-gradient(center, ellipse cover, #ffffff
+              20%, #bbbbbb 100%); /* FF3.6-15 */
+        background: #e5e5e5 -webkit-radial-gradient(center, ellipse cover, #ffffff
+              20%, #bbbbbb 100%); /* Chrome10-25,Safari5.1-6 */
+        background: #e5e5e5
+          radial-gradient(ellipse at center, #ffffff 20%, #bbbbbb 100%); /* W3C, IE10+, FF16+, Chrome26+,Opera12+, Safari7+*/
+      }
+
+      .lightbox-html .wowbook-book-container {
+        background: url(img/book_html/wood.jpg);
+      }
+      .lightbox-html .wowbook-toolbar {
+        margin-top: 1em; /* FIXME */
+        box-sizing: content-box !important;
+      }
+
+      .lightbox-html .wowbook-controls {
+        border-radius: 6px;
+        width: auto;
+      }
+
+      .lightbox-html.wowbook-mobile .wowbook-toolbar {
+        margin: 0;
+      }
+
+      .lightbox-html.wowbook-mobile .wowbook-controls {
+        border-radius: 0;
+        width: 100%;
+      }
+
+      /*		.lightbox-html .wowbook-controls {
+			border-radius: 6px;
+			width: auto;
+			background: none;
+			color: rgba(60, 20, 20, 0.8);
+			text-shadow: 0 1px 0 #fff;
+			box-shadow: none;
+		}
+		.lightbox-html .wowbook-control:hover {
+			background: none;
+			color: white;
+			text-shadow: 0 1px 0 #fff, 0 0px 5px rgba(60, 20, 20, 1);
+			text-shadow: 0 1px 0 #fff, 0 0px 3px #fff;
+		}
+*/
+      hr {
+        max-width: 450px;
+      }
+    </style>
+
+    <!-- jQuery -->
+    <script src="./js/jquery.js"></script>
+    <script>
+      imageBook = ["1", "8"][Math.floor(Math.random() * 2)];
+      imageBookPath = imageBook;
+      $("#book1-trigger .book-thumb").attr(
+        "src",
+        imageBookPath + "./assets/image_000.jpg"
+      );
+    </script>
+
+    <!-- Bootstrap Core JavaScript -->
+    <script src="./js/bootstrap.min.js"></script>
+
+    <!-- Plugin JavaScript -->
+    <script src="./js/jquery.easing.min.js"></script>
+    <script src="./js/jquery.fittext.js"></script>
+    <script src="./js/wow.min.js"></script>
+
+    <!-- Custom Theme JavaScript -->
+    <script src="./js/creative.js"></script>
+
+    <link rel="stylesheet" href="./css/wowbook.css" type="text/css" />
+    <style>
+      .wowbook-right .wowbook-gutter-shadow {
+        background-image: url("./assets/page_right_background.png");
+        background-position: 0 0;
+        width: 75px;
+      }
+      .wowbook-left .wowbook-gutter-shadow {
+        background-image: url("./assets/page_left_background.png");
+        opacity: 0.5;
+        width: 60px;
+      }
+      .wowbook-control-currentPage {
+        font-family: "Segoe UI", Helvetica, Arial, sans-serif;
+      }
+    </style>
+    <script type="text/javascript" src="./js/pdf.combined.min.js"></script>
+    <script type="text/javascript" src="./js/wow_book.min.js"></script>
+    <script type="text/javascript">
+      $(function () {
+        function fullscreenErrorHandler() {
+          if (self != top)
+            return "The frame is blocking full screen mode. Click on 'remove frame' button above and try to go full screen again.";
+        }
+
+        // imageBook = ["1", "8"][ Math.floor(Math.random()*2)];
+        // imageBookPath = "./img/magazine_template_0"+imageBook+"/";
+        // $("#book1-trigger .book-thumb").attr("src", imageBookPath+"image_000.jpg")
+
+        var optionsBook1 = {
+          height: 1056,
+          width: 816 * 2,
+          // ,maxWidth : 800
+          // ,maxHeight : 800
+          pageCount: 40,
+          images: imageBookPath + "/image_{{xxx}}.jpg",
+
+          lightbox: "#book1-trigger",
+          lightboxClass: "lightbox-images" + (imageBook == "1" ? "1" : "2"),
+          centeredWhenClosed: true,
+          hardcovers: true,
+          style: "wowbook-cs-white",
+          toolbar:
+            "lastLeft, left, currentPage, right, lastRight, zoomin, zoomout, slideshow, flipsound, fullscreen, thumbnails",
+          thumbnailsPosition: "bottom",
+          thumbnailScale: 0.12,
+          thumbnailsSprite: imageBookPath + "/thumbnails_sprite_0.12.jpg",
+          perspective: 4000,
+          responsiveHandleWidth: 50,
+
+          onFullscreenError: fullscreenErrorHandler,
+        };
+
+        var optionsBook2 = {
+          height: 1024,
+          width: 725 * 2,
+          // ,maxWidth : 800
+          // ,maxHeight : 400
+          pageNumbers: false,
+
+          pdf: "./assets/a-new-earth.pdf",
+          pdfFind: true,
+          pdfTextSelectable: false,
+
+          lightbox: "#book2-trigger",
+          lightboxClass: "lightbox-pdf",
+          centeredWhenClosed: true,
+          hardcovers: true,
+          curl: false,
+          toolbar:
+            "lastLeft, left, currentPage, right, lastRight, find, toc, zoomin, zoomout, flipsound, fullscreen, thumbnails",
+          thumbnailsPosition: "bottom",
+          responsiveHandleWidth: 50,
+          onFullscreenError: fullscreenErrorHandler,
+        };
+
+        // Disable the context menu to prevent copying
+        $(document).on("contextmenu", function (e) {
+          e.preventDefault();
+        });
+
+        // Disable printing via keyboard shortcuts (Ctrl+P, Cmd+P)
+        $(document).on("keydown", function (e) {
+          if ((e.ctrlKey && e.key === "p") || (e.metaKey && e.key === "p")) {
+            e.preventDefault();
+            return false;
+          }
+        });
+
+        // Override window.print() to disable print from browser menu
+        window.print = function () {
+          return false;
+        };
+
+        var optionsBook3 = {
+          height: 600,
+          width: 880,
+          maxWidth: 880,
+          // ,maxHeight : 800
+          lightbox: "#book3-trigger",
+          lightboxClass: "lightbox-html",
+          lightboxBackground: "url(./assets/wood.jpg)",
+          centeredWhenClosed: true,
+          hardcovers: true,
+          toolbar:
+            "lastLeft, left, right, lastRight, zoomin, zoomout, slideshow, flipsound, fullscreen, thumbnails",
+          toolbarPosition: "top",
+          thumbnailsPosition: "bottom",
+          responsiveHandleWidth: 50,
+
+          onFullscreenError: fullscreenErrorHandler,
+        };
+
+        var books = {
+          "#book1": optionsBook1,
+          "#book2": optionsBook2,
+          "#book3": optionsBook3,
+        };
+        $("#book1-trigger, #book2-trigger, #book3-trigger").on(
+          "click",
+          function () {
+            buildBook("#" + this.id.replace("-trigger", ""));
+          }
+        );
+
+        function buildBook(elem) {
+          var book = $.wowBook(elem);
+          if (!book) {
+            $(elem).wowBook(books[elem]);
+            book = $.wowBook(elem);
+          }
+          // book.opts.onHideLightbox = function(){
+          //     setTimeout( function(){ book.destroy(); }, 1000);
+          // }
+          book.showLightbox();
+        }
+      });
+    </script>
+
+    <div class="wowbook-lightbox lightbox-pdf">
+      <div class="wowbook-toolbar wowbook-fontawesome" style="bottom: 0px">
+        <div class="wowbook-controls">
+          <a
+            class="wowbook-control wowbook-control-toggle-toolbar wowbook-collapsed"
+            style="display: none"
+            ><i></i></a
+          ><a class="wowbook-control wowbook-control-lastLeft wowbook-disabled"
+            ><i></i></a
+          ><a class="wowbook-control wowbook-control-left wowbook-disabled"
+            ><i></i></a
+          ><span
+            class="wowbook-control wowbook-control-currentPage"
+            style="width: 43px"
+            ><input
+              class="wowbook-input-page"
+              style="display: none; top: 10px"
+            /><span
+              class="wowbook-current-page"
+              style="width: 100%; visibility: visible"
+              >1/89</span
+            ></span
+          ><a class="wowbook-control wowbook-control-right"><i></i></a
+          ><a class="wowbook-control wowbook-control-lastRight"><i></i></a
+          ><a title="find" class="wowbook-control wowbook-control-find"
+            ><i></i></a
+          ><a
+            title="table of contents on/off"
+            class="wowbook-control wowbook-control-toc"
+            ><i></i></a
+          ><a title="zoom in" class="wowbook-control wowbook-control-zoomin"
+            ><i></i></a
+          ><a title="zoom out" class="wowbook-control wowbook-control-zoomout"
+            ><i></i></a
+          ><a
+            title="download"
+            class="wowbook-control wowbook-control-download"
+            href="./assets/a-new-earth"
+            download="./assets/a-new-earth"
+            ><i></i></a
+          ><a
+            title="flip sound on/off"
+            class="wowbook-control wowbook-control-flipsound"
+            ><i></i></a
+          ><a
+            title="fullscreen on/off"
+            class="wowbook-control wowbook-control-fullscreen"
+            ><i></i></a
+          ><a
+            title="thumbnails on/off"
+            class="wowbook-control wowbook-control-thumbnails"
+            ><i></i
+          ></a>
+          <div id="findbar" class="wowbook-findbar wowbook-hidden">
+            <label style="display: none">Find: </label>
+            <div class="wowbook-find-text-container">
+              <input
+                class="wowbook-find-text"
+                placeholder="Text to find"
+              /><span class="wowbook-find-count"></span>
+            </div>
+            <a
+              title="Find the previous occurrence of the phrase"
+              class="wowbook-find-previous wowbook-control-back"
+              ><i></i><span>Previous</span></a
+            ><a
+              title="Find the next occurrence of the phrase"
+              class="wowbook-find-next wowbook-control-next"
+              ><i></i><span>Next</span></a
+            ><label style="display: none"
+              ><input
+                type="checkbox"
+                class="wowbook-find-highlight-all"
+                checked="1"
+              />
+              Highlight all</label
+            ><label
+              ><input type="checkbox" class="wowbook-find-match-case" />
+              <span>Match case</span></label
+            ><a class="wowbook-close"><i></i></a>
+          </div>
+        </div>
+      </div>
+      <div class="wowbook-book-container" style="height: 829px; bottom: 46px">
+        <div
+          id="book2"
+          class="wowbook wowbook-pdf"
+          style="height: 789px; width: 1052px"
+        ></div>
+      </div>
+      <button class="wowbook-close">✕</button>
+    </div>
+  </body>
+</html>
